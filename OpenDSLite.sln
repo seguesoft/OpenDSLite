@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenDSLite", "OpenDSLite\OpenDSLite.vcxproj", "{74ECC052-DD2E-44E5-B071-F5178602A178}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenDSLiteTest", "OpenDSLiteTest\OpenDSLiteTest.vcxproj", "{F30EDD0B-29BD-4ADB-95BC-A340C61BBBDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74ECC052-DD2E-44E5-B071-F5178602A178}.Debug|Win32.ActiveCfg = Debug|Win32
+		{74ECC052-DD2E-44E5-B071-F5178602A178}.Debug|Win32.Build.0 = Debug|Win32
+		{74ECC052-DD2E-44E5-B071-F5178602A178}.Release|Win32.ActiveCfg = Release|Win32
+		{74ECC052-DD2E-44E5-B071-F5178602A178}.Release|Win32.Build.0 = Release|Win32
+		{F30EDD0B-29BD-4ADB-95BC-A340C61BBBDB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F30EDD0B-29BD-4ADB-95BC-A340C61BBBDB}.Debug|Win32.Build.0 = Debug|Win32
+		{F30EDD0B-29BD-4ADB-95BC-A340C61BBBDB}.Release|Win32.ActiveCfg = Release|Win32
+		{F30EDD0B-29BD-4ADB-95BC-A340C61BBBDB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

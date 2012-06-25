@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\OpenDSLite\dtplink_buffer.c" />
+    <ClCompile Include="..\OpenDSLite\dtplink_ds.c" />
+    <ClCompile Include="..\OpenDSLite\dtplink_io.c" />
+    <ClCompile Include="..\OpenDSLite\dtplink_util.c" />
+    <ClCompile Include="..\OpenDSLite\ds.c" />
+    <ClCompile Include="..\OpenDSLite\dsapp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\OpenDSLite\dtplink_buffer.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_config.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_datastruct.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_ds.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_io.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_util.h" />
+    <ClInclude Include="..\OpenDSLite\dtplink_version.h" />
+    <ClInclude Include="..\OpenDSLite\platform\windows\dtplink_windows_basetype.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OpenDSLite\platform\windows\dtplink_windows_netio.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OpenDSLite\dsapp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="platform">
+      <UniqueIdentifier>{16e99654-c6f4-4b17-80a5-06a8bc6a0e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{8de60a61-cace-4bf2-b6ae-9a346d8645ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
