@@ -111,15 +111,15 @@ Int32 WRITE_DWORD(const ULong32 value)
 
 Int32 WRITE_FLOAT(const float value)
 {
-    Int32 ret = -1;
-    UInt8* pValue = (UInt8*)(&value);
+	Int32 ret = -1;
+	UInt8* pValue = (UInt8*)(&value);
 
-    if((response_info.length + sizeof(float)) <= MAX_RTP_MSG_SIZE){
-        memcpy(response_info.buffer + response_info.tail, pValue, sizeof(float));
-        response_info.tail += sizeof(float);
-        response_info.length = response_info.tail;
-        ret = response_info.length;
-    }
+	if((response_info.length + sizeof(float)) <= MAX_RTP_MSG_SIZE){
+		memcpy(response_info.buffer + response_info.tail, pValue, sizeof(float));
+		response_info.tail += sizeof(float);
+		response_info.length = response_info.tail;
+		ret = response_info.length;
+	}
     return ret;
 }
 

@@ -66,8 +66,8 @@
 #define REMOTE_RELAY_MODE       (1)
 #define LOCAL_MODE              (2)
 #define EQUAL_ADDR(Svr1, Svr2)  (Svr1.addr == Svr2.addr && Svr1.port == Svr2.port)
-#define SPACE					(' ');
-#define SEPARATER				('|');
+#define SPACE                   (' ');
+#define SEPARATER               ('|');
 // Open APIs
 #ifdef __cplusplus
 extern "C" {
