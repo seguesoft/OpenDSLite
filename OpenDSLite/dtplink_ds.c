@@ -145,7 +145,7 @@ static void PingCenterServer()
 	rtpTo.port = pGlobalContext->mCS1.port; // ping on port 1
 
 	if(first_time == 1){
-		//Blindly Ping center server before do the real communication, not comply with RFC?
+		// Blindly Ping center server before do the real communication, not comply with RFC?
 		DTPLink_Send(myFd, &msg, sizeof(msg), rtpTo.addr, rtpTo.port);
 		DTPLink_Send(myFd, &msg, sizeof(msg), rtpTo.addr, rtpTo.port+1);
 		first_time = 0;
@@ -205,7 +205,7 @@ static void RegisterDS()
 	rtpSrv1.port = pGlobalContext->mDNS.port; 
 
 	PRINTF("Begin register device server\n");
-	if( pGlobalContext->mRunningMode == REMOTE_RELAY_MODE ){
+	if(pGlobalContext->mRunningMode == REMOTE_RELAY_MODE){
 		sprintf(msg, "%c %s|R", REGIST_DS_IP_TO_DNS_SERVER, pGlobalContext->mID);
 		msgLen = strlen(msg);
 		PRINTF("I'm running in RELAY  Mode\n");
@@ -223,7 +223,7 @@ static void RegisterDS()
 static void OnReceiveCenterServerResponse(Int8* msg, IPv4Address* ip, IPv4Address* cs2)
 {  
 	// ¡õClientPublicAddress|CloudServer2Address
-	Int8 *p = msg;
+	Int8* p = msg;
 	ULong32 addr = 0;
 	UInt16  port = 0;
 
@@ -254,7 +254,7 @@ static void OnReceiveCenterServerResponse2(Int8* msg, IPv4Address* ip)
 	// ¡õClientPublicAddress
 	ULong32 addr = 0;
 	UInt16  port = 0;
-	Int8 *p = msg;
+	Int8* p = msg;
 
 	memcpy(&addr, p, 4);
 	addr = ntohl(addr);
@@ -273,7 +273,7 @@ static void OnReceiveAuxServerResponse(Int8* msg, IPv4Address* ip)
 	// ¡õClientPublicAddress
 	ULong32 addr = 0;
 	UInt16  port = 0;
-	Int8 *p = msg;
+	Int8* p = msg;
 
 	memcpy(&addr, p, 4);
 	addr = ntohl(addr);
@@ -307,7 +307,8 @@ static void OnReceiveDNSQueryRequest(Int8* msg, UInt16 msgLen)
 	// ¡õClientPublicAddress
 	ULong32 addr = 0;
 	UInt16  port = 0;
-	Int8 *p = msg;
+	Int8* p = msg;
+
 	memcpy(&addr, p, 4);
 	addr = ntohl(addr);
 	p = p + 4;
@@ -391,14 +392,14 @@ static void ProcessRelayDataQueryRequest(UInt8 resp_id, Int8* imsg, UInt16 imsgL
 	Int8 omsg[MAX_RTP_MSG_SIZE] = {0};
 	Int16 omsgLen = sizeof(omsg);
 	IPv4Address clientIP;
-	Int8 *pRelayMessage = NULL;
+	Int8* pRelayMessage = NULL;
 	Int32 relayFd = -1;
 	Int32 len = 0;
 	UInt16 id = 0;	
 	ULong32 addr = 0;
 	UInt16  port = 0;
 
-	if( resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS ){
+	if(resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS){
 		len = ParseRelayInfoOnDS(imsg, imsgLen, &clientIP, &pRelayMessage);
 	}else{
 		len = ParseRelayHttpInfoOnDS(imsg, imsgLen, &clientIP, &relayFd, &pRelayMessage);
@@ -412,7 +413,7 @@ static void ProcessRelayDataQueryRequest(UInt8 resp_id, Int8* imsg, UInt16 imsgL
 	addr = htonl(clientIP.addr);
 	port = htons(clientIP.port);
 
-	if( resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS ){ // Request reached DS directly
+	if(resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS){ // Request reached DS directly
 		//sprintf(omsg, "%c " IP_FMT "|", DEV_SERVER_RESP_RELAY_TO_CLIENT, IP2STR(clientIP));
 		omsg[0] = REMOTE_DS_DATA_RESP_RELAY_TO_CLIENT;
 		omsg[1] = SPACE;
@@ -465,20 +466,20 @@ static void ProcessClientRequests(UInt8 resp_id, Int8* msg, Int16 msgLen, IPv4Ad
 	DTPLink_ResetBuffers(&pGlobalContext->REQUEST_INFO, &pGlobalContext->RESPONSE_INFO);
 
 	PRINTF("Get  MSG(id=0x%x, len=%d) from: " IP_FMT " content: %s @%d\n", resp_id, msgLen, IP2STR(*client), msg, myFd);
-	if( resp_id == QUERY_DS_IP_TO_DNS_SERVER){ 
+	if(resp_id == QUERY_DS_IP_TO_DNS_SERVER){ 
 		OnReceiveDNSQueryRequest(msg, msgLen);
-	}else if( resp_id == QUERY_DS_IP_TO_LOCAL_DS){ 
+	}else if(resp_id == QUERY_DS_IP_TO_LOCAL_DS){ 
 		OnReceiveLocalDNSQueryRequest(msg, msgLen, client);
-	}else if( resp_id == QUERY_DATA_TO_REMOTE_DS){ 
+	}else if(resp_id == QUERY_DATA_TO_REMOTE_DS){ 
 		OnReceiveRemoteDataQueryRequest(msg, msgLen, client);
-	}else if( resp_id == QUERY_DATA_TO_LOCAL_DS ){
+	}else if(resp_id == QUERY_DATA_TO_LOCAL_DS){
 		OnReceiveLocalDataQueryRequest(msg, msgLen, client);
-	}else if( resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS || resp_id == QUERY_DATA_HTTP_TO_REMOTE_DS ){
+	}else if(resp_id == QUERY_DATA_RELAY_TO_REMOTE_DS || resp_id == QUERY_DATA_HTTP_TO_REMOTE_DS){
 		OnReceiveRelayDataQueryRequest(resp_id, msg, msgLen, client);
-	}else if( resp_id == REGIST_DS_IP_TO_DNS_SERVER ){
+	}else if(resp_id == REGIST_DS_IP_TO_DNS_SERVER){
 		OnReceiveDSRegisterResponse(msg, msgLen);
-	}else if( resp_id == SERVER_PUNCHING ){
-		//OnReceiveKeepAlive(client);
+	}else if(resp_id == SERVER_PUNCHING){
+		//OnReceiveKeepAlive(client); ignore client keep-alive message
 	}
 }
 
@@ -486,6 +487,7 @@ static void ProcessClientRequests(UInt8 resp_id, Int8* msg, Int16 msgLen, IPv4Ad
 BOOL DTPLink_DSInit(Int8* id, Int8* dns)
 {
 	BOOL ret = FALSE;
+
 	// Init network layer
 	ret = DTPLink_InitNetwork();
 	if(!ret){ return FALSE; }
@@ -519,7 +521,7 @@ void DTPLink_DSLoop()
 	IPv4Address MIP2;
 	BOOL ok = FALSE;
 	CS1P2.addr = pGlobalContext->mCS1.addr;
-	CS1P2.port = pGlobalContext->mCS1.port+1;
+	CS1P2.port = pGlobalContext->mCS1.port + 1;
 
 	// Some low resource platform don't support poll or selet io, 
 	// so we wait here. maybe not a good desingn, but easy for porting
@@ -642,6 +644,7 @@ void DTPLink_DSLoop()
 				}
 				break;
 			case DS_STATUS_ONLINE: 
+				// have nothing to do here so far
 				break;
 			default:
 				break;
@@ -656,7 +659,7 @@ void DTPLink_DSHeartBeat()
 	Int8 msg[MAX_RTP_MSG_SIZE] = {0};
 	UInt32 msgLen = sizeof(msg);
 
-	if( pGlobalContext->mRunningMode == REMOTE_RELAY_MODE ){
+	if( pGlobalContext->mRunningMode == REMOTE_RELAY_MODE){
 		sprintf(msg, "%c %s|R", REGIST_DS_IP_TO_DNS_SERVER, &pGlobalContext->mID);
 		msgLen = strlen(msg);
 	}else{

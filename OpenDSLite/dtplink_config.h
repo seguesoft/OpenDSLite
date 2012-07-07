@@ -22,7 +22,7 @@
 // binded language list
 // JAVA, Python, Objective-C
 
-//Supported platform list
+// Supported platform list
 #define DS_PLATFORM_WINDOWS (0x01)
 #define DS_PLATFORM_LINUX   (0x02)
 #define DS_PLATFORM_ECOS    (0x03)
@@ -63,12 +63,12 @@
 	#include "platform/linux/dtplink_linux_basetype.h"
 #endif
 
-//Invaild socket result
+// Invaild socket result
 #ifndef INVALID_SOCKET
 #define INVALID_SOCKET  (-1)
 #endif
 
-//Boolean related macro
+// boolean related macro
 #ifndef BOOL
 #define BOOL UInt8
 #endif
