@@ -19,6 +19,7 @@
 #ifndef DTPLINK_DATASTRUCT_H
 #define DTPLINK_DATASTRUCT_H
 
+#pragma pack(push)
 #pragma pack(1)
 #include "dtplink_config.h"
 #include "dtplink_buffer.h"
@@ -56,5 +57,6 @@ typedef struct {
 	UInt8 mRecvRetryCount;
 	UInt8 mSendRetryCount;
 } CServerContext;
+#pragma pack(pop)
 
 #endif /* DTPLINK_DATASTRUCTS_H */
